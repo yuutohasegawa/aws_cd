@@ -2,4 +2,4 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user-webapp_app
+    destination: /home/ec2-user/web_app
