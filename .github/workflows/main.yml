@@ -9,7 +9,7 @@ name: AWS Code Deploy
     runs-on: ubuntu-latest
   
     steps:
-    - uses: chrislennon/action-aws-cli@v1.1
+    - uses: actions/checkout@v2
   
     - name: Set AWS region
       run: aws configure set region us-east-1
