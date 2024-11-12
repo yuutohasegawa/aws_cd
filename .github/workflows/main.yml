@@ -1,31 +1,17 @@
-name: AWS CodeDeploy
-
+name: AWS Code Deploy
 on:
   push:
-    branches: 
-      - main
-
+    branches: [ main ]
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      # Check out the repository
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Set AWS region
-      - name: Set AWS region
-        run: aws configure set region us-east-1
-
-      # Create deployment in AWS CodeDeploy
-      - name: Run AWS CodeDeploy
-        run: |
-          aws deploy create-deployment \
-            --application-name "web_app" \
-            --deployment-group-name "github_deploy_gp" \
-            --github-location repository="yuutohasegawa/aws_cd",commitId="${{ github.sha }}"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+    - uses: actions/checkout@v2
+    - name: Set AWS region
+      run: aws configure set region us-east-1
+    - name: Run AWS CodeDeploy
+      run: aws deploy create-deployment --application-name "web_app" --deployment-group-name "github_deploy_gp" --github-location repository="yuutohasegawa/aws_cd",commitId="${{ github.sha }}"
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
