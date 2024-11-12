@@ -12,7 +12,6 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-        aws-region: us-east-1  # リージョンを指定
+        aws-region: us-east-1  # Ensure region matches your AWS CodeDeploy setup
     - name: Run AWS CodeDeploy
-      run: aws deploy create-deployment --application-name "web_app" --deployment-group-name "github_deploy_gp" --github-location repository="kinno6458/aws_cd",commitId="${{ github.sha }}"
+      run: aws deploy create-deployment --application-name "web_app" --deployment-group-name "github_deploy_gp" --github-location repository="yuutohasegawa/aws_cd",commitId="${{ github.sha }}"
