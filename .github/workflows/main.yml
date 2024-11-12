@@ -15,4 +15,4 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: us-east-1  # リージョンを指定
     - name: Run AWS CodeDeploy
-      run: aws deploy create-deployment --application-name "web_app" --deployment-group-name "github_deploy_gp" --github-location repository="kinno6458/aws_cd",commitId="${{ github.sha }}"
+      run: aws deploy create-deployment --application-name "web_app" --deployment-group-name "github_deploy_gp" --github-location repository="yuutohasegawa/aws_cd",commitId="${{ github.sha }}"
